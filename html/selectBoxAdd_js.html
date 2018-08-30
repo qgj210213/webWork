@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JS添加下拉列表（ドロップダウンボックス）</title>
+</head>
+
+<body>
+    <h1>我的第一个 Web 页面</h1>
+    <p>我的第一个段落。</p>
+    <button onclick="myFunction()">点我</button>
+    <script>
+    function myFunction() {
+        // document.write("<select><option value='1'>受取可能</option><option value='2'>催促</option></select>");
+        var newSelect = document.createElement("select");
+        newSelect.id = "mySelect";
+        newSelect.add(new Option("文本", "值"));
+        newSelect.add(new Option("文本2", "值2"));
+        newSelect.style.width = '80px';
+        newSelect.style.height = '40px';
+        document.body.appendChild(newSelect);
+
+              // $("#mySelect").val(" ");
+              //     $("#mySelect").prop('disabled', 'disabled');
+            document.getElementById("mySelect").disabled = true;
+        
+    }
+    </script>
+</body>
+
+</html>
