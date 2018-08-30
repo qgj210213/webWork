@@ -1,5 +1,32 @@
 $(function() {
+    alert("拡張機能CORSを追加");
+    console.log('https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en-US)');
     $("#search").click(function() {
-        alert("ok");
-    })
+
+        var orderNumName = "orderNum";
+        var orderNumVal = $("#order_num").val();
+        var textDate;
+        // jQuery ajax を使って JSON を受け取る
+
+        /*$.get("http://localhost:8088/test/get?" + orderNumName + "=" + orderNumVal, function(data) {
+            alert(data);
+        });*/
+        // 获取的值，放到入力框中
+        $("#mytr").css("display", "block");
+        // $("#order_val").val("ss");
+
+        $.post("http://localhost:8088/test/post?" + orderNumName + "=" + orderNumVal, function(data) {
+            /*optional stuff to do after success */
+            textDate = data;
+            $("#order_val").val(textDate);
+            // alert(textDate);
+        });
+
+    });
+
+    $("#reset").click(function() {
+        $("#mytr").css("display", "none");
+        $("#order_num").val("");
+    });
+
 });
