@@ -1,0 +1,20 @@
+git常用命令：
+1.创建git资源库
+    git init --bare 库名称
+
+2.在用户文件夹下把资源clone下来
+    git clone <仓库地址或目录> /d/software/respository/<仓库名> <用户目录>
+
+3.创建一个文件，纳入到版本控制中。
+    git add <文件名>
+
+4.提交到本地版本库中。
+ git commit <文件名>
+
+5 推送到远程共享库中
+   git push origin master
+
+6.切换目录(新用户)，获取最新的文件。
+   git pull
+7.查看git仓库中各文件的当前状态
+git status
