@@ -5,7 +5,6 @@ $(function() {
 
         var orderNumName = "orderNum";
         var orderNumVal = $("#order_num").val();
-        var textDate;
         // jQuery ajax を使って JSON を受け取る
 
         /*$.get("http://localhost:8088/test/get?" + orderNumName + "=" + orderNumVal, function(data) {
@@ -15,10 +14,12 @@ $(function() {
         $("#mytr").css("display", "block");
         // $("#order_val").val("ss");
 
-        $.post("http://localhost:8088/test/post?" + orderNumName + "=" + orderNumVal, function(data) {
+        $.post("http://localhost:8080/test/post?" + orderNumName + "=" + orderNumVal, function(data) {
             /*optional stuff to do after success */
-            textDate = data;
-            $("#order_val").val(textDate);
+            // data Json Object
+            $("#order_val").val(orderNumVal);
+            $("#code").val(data.code);
+            $("#codeName").val(data.codeName);
             // alert(textDate);
         });
 
