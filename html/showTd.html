@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
+    <script src="../jquery/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" href="">
     <style type="text/css" media="screen">
     #mytbl td,
@@ -31,23 +33,40 @@
                     </tr>
                     <tr>
                         <td>
-                            <input type="text" name="" value="" placeholder="name">
+                            <input type="text" name="" value="" placeholder="name" id="nameId">
                         </td>
-                        <td  class="tdInput">
-                            <input type="text" name="" value="" placeholder="Address">
-                        </td>
-                        <td>
-                            <input type="text" name="" value="" placeholder="date">
+                        <td class="tdInput">
+                            <input type="text" name="" value="" placeholder="Address" id="addressId">
                         </td>
                         <td>
-                            <button type="">search</button>
+                            <input type="text" name="" value="" placeholder="date" id="dateId">
+                        </td>
+                        <td>
+                            <button type="" id="searchId">search</button>
                         </td>
                     </tr>
                 </table>
             </td>
         </tr>
-        <tr><td><button type="">output</button></td></tr>
+        <tr>
+            <td>
+                <button type="" id="output">output</button>
+                <input type="text" name="" value="" placeholder="" id="addressTw">
+            </td>
+        </tr>
     </table>
+    <script>
+    $("#searchId").click(function() {
+        /* body... */
+        $("#addressId").val("dalian");
+        var str = $("#addressId").val();
+        $("#addressTw").val(str);
+    });
+    $("#output").click(function() {
+        /* body... */
+        $(".tdInput").css("display", "block");
+    })
+    </script>
 </body>
 
 </html>
