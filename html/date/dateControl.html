@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>日付表示https://www.layui.com/laydate/</title>
+    <script src="../../jquery/jquery-3.3.1.js"></script>
+    <script src="../../jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../js/laydate/laydate.js"></script>
+    <!-- <script src="../../js/datetimePicker/jquery.js"></script>
+    <script src="../../js/datetimePicker/jquery.datetimepicker.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../js/datetimePicker/jquery.datetimepicker.css"> -->
+</head>
+
+<body>
+    <input type="text" id="test1">
+    <!-- <input type="text" id="sample"> -->
+    <script>
+    //常规用法
+    laydate.render({
+        elem: '#test1'
+    });
+    //国际版
+    laydate.render({
+        elem: '#test1-1',
+        lang: 'en'
+    });
+    // $("#sample").datetimepicker();
+    console.log('https://www.layui.com/laydate/');
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>fileDownload change code</title>
+    <link rel="stylesheet" href="">
+    <script src="../../jquery/jquery-3.3.1.js"></script>
+    <script src="../../jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../js/encoding.min.js"></script>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>
+                <textarea rows="10" cols="50" id="file">ファイルダウンロード</textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="" id="downLoad">downLoad</button>
+            </td>
+        </tr>
+    </table>
+</body>
+<script type="text/javascript">
+$("#downLoad").click(function() {
+    createFile();
+});
+
+function createFile() { //　ファイル作成
+    // body... 
+    var content = $("#file").val();
+    var filename = "fileDownload_qgj.dat";
+    var codes = Encoding.stringToCode(content);
+    var sjisArray = Encoding.convert(codes, { to: 'SJIS' });
+    var type = 'text/csv;charset=Shift-JIS';
+    var blob = new Blob([new Uint8Array(sjisArray)], { type: type });
+    if (window.navigator.msSaveBlob) {
+        window.navigator.msSaveOrOpenBlob(blob, filename);
+        return false;
+    }
+
+    var fr = new FileReader();
+    fr.onload = function(e) {
+        var src = e.target.result;
+        src = new Uint8Array(src);
+        src = String.fromCharCode.apply("", src);
+        src = btoa(src);
+        src = "data:" + type + ";base64," + src;
+        var a = $('<a download="' + filename + '">').attr("href", src).text("");
+        a.appendTo($('body')).first().get(0).click();
+        a.remove();
+    }
+    fr.readAsArrayBuffer(blob);
+}
+</script>
+
+</html>

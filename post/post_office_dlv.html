@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <!--   <script src="../../../common/jquery-3.3.1.js" charset="utf-8"></script>
+    <script src="../../../common/jquery-3.3.1.min.js" charset="utf-8"></script> -->
+    <!-- <script src="../../../common/dateformat.js" charset="utf-8"></script> -->
+    <!-- <script src="../../../common/date.js" charset="utf-8"></script> -->
+    <!-- <script src="../../../common/encoding.min.js" charset="utf-8"></script> -->
+    <script src="../jquery/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../jquery/jquery-3.3.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../js/dateformat.js" charset="utf-8"></script>
+    <script src="../js/encoding.min.js"></script>
+    <script type="text/javascript" src="post_office_dlv.js" charset="utf-8"></script>
+    <style type="text/css">
+    /* 表の装飾は簡略化しています */
+
+    #myContainer {
+        font-size: 15px;
+    }
+
+    input {
+        width: 90px;
+        /*height: 20px;*/
+    }
+
+    .btn {
+        width: 100px;
+    }
+
+    #message {
+        display: none;
+    }
+
+    #myTBL {
+        border: 1px solid #5caadb;
+        /* ボーダー : 幅,線種,色 */
+        border-collapse: collapse;
+    }
+
+    #myTBL thead th,
+    #myTBL tbody td {
+        border: 1px solid #5caadb;
+        padding: 5px;
+    }
+
+    .showClass {
+        display: none;
+    }
+
+    .dateWidth {
+        width: 125px;
+    }
+
+    .dateWidth input {
+        width: 120px;
+    }
+
+    .orderWidth input {
+        width: 200px;
+    }
+    </style>
+</head>
+
+<body>
+    <table border="0" id="myContainer">
+        <tr>
+            <td>
+                <table id="myTBL" border="1">
+                    <caption>(郵便局)ステータスデータファイル作成</caption>
+                    <tr>
+                        <th>データ
+                            <br>種別</th>
+                        <th class="showClass">通販業者
+                            <br>コード</th>
+                        <th class="showClass">通販業者
+                            <br>名称</th>
+                        <th class="showClass">コンビニ
+                            <br>コード</th>
+                        <th class="showClass">DCコード</th>
+                        <th class="showClass">DC名称</th>
+                        <th class="showClass">コンビニ
+                            <br>店舗コード</th>
+                        <th class="showClass">コンビニ
+                            <br>店舗名称</th>
+                        <th>
+                            <font color="#ff0000">＊</font>受取可能日</th>
+                        <th>
+                            <font color="#ff0000">＊</font>受取
+                            <br>可能時間</th>
+                        <th class="showClass">受渡
+                            <br>期限日</th>
+                        <th>送り状
+                            <br>番号</th>
+                        <th>
+                            <font color="#ff0000">＊</font>注文番号</th>
+                        <th class="showClass">注文
+                            <br>主名称</th>
+                        <th class="showClass">発送
+                            <br>年月日</th>
+                        <th class="showClass">送信
+                            <br>日時</th>
+                        <th>納品方法
+                            <br>フラグ</th>
+                        <th>検索</th>
+                        <th class="showClass">注文日</th>
+                    </tr>
+                    <tr>
+                        <td style="padding-bottom: 3px">
+                            <select name="sellerCode" style="width:85px;height: 21px;" id="deliveryStatus_1" onchange="doSelect('#deliveryStatus_1', '#dropshipFlag_1')">
+                                <option value="1">受取可能</option>
+                                <option value="2">催促</option>
+                            </select>
+                        </td>
+                        <td class="showClass">
+                            <input type="text" name="通販業者コード" maxlength="6" id="sellerCode_1" value="510002" disabled="disabled">
+                        </td>
+                        <td class="showClass">
+                            <input type="text" name="通販業者名称" maxlength="80" id="seller_1" value="楽天ブックス" disabled="disabled">
+                        </td>
+                        <td class="showClass">
+                            <input type="text" name="コンビニコード" maxlength="4" id="postOfficeCode_1" disabled="disabled">
+                        </td>
+                        <td class="showClass">
+                            <input type="text" name="DCコード" maxlength="10" id="dcCode_1" </td>
+                            <td class="showClass">
+                                <input type="text" name="DC名称" maxlength="50" id="dcName_1">
+                            </td>
+                            <td class="showClass">
+                                <input type="text" name="コンビニ店舗コード" maxlength="10" id="postOfficeBranchCode_1" disabled="disabled">
+                            </td>
+                            <td class="showClass">
+                                <input type="text" name="コンビニ店舗名称" maxlength="50" id="postOfficeBranchName_1" disabled="disabled">
+                            </td>
+                            <td class="dateWidth">
+                                <input type="date" name="受取可能日" maxlength="8" id="pickupStartDate_1">
+                            </td>
+                            <td>
+                                <input type="time" name="受取可能時間" maxlength="6" id="pickupAvailableTime_1">
+                            </td>
+                            <td class="showClass">
+                                <input type="text" name="受渡期限日" maxlength="8" id="pickupEndDate_1">
+                            </td>
+                            <td>
+                                <input type="text" name="送り状番号" maxlength="12" id="trackingNumber_1" disabled="disabled">
+                            </td>
+                            <td class="orderWidth">
+                                <input type="text" name="注文番号" maxlength="30" id="orderNumber_1">
+                            </td>
+                            <td class="showClass">
+                                <input type="text" name="注文主名称" maxlength="40" id="buyer_1" disabled="disabled">
+                            </td>
+                            <td class="showClass">
+                                <input type="text" name="発送年月日" maxlength="8" id="shipDate_1">
+                            </td>
+                            <td class="showClass">
+                                <input type="text" name="送信日時" maxlength="12" id="fileCreatedDate_1" placeholder="yyyymmddhhss" style="width: 100px">
+                            </td>
+                            <td style="padding-bottom: 3px">
+                                <select name="sellerCode" style="width:90px;height: 21px;" id="dropshipFlag_1">
+                                    <option value="0">ＣＤＣ経由</option>
+                                    <option value="1">店舗直納</option>
+                                </select>
+                            </td>
+                            <td>
+                                <button type="" id="search_1" name="searchBtn" style="height:22px;" onclick="doSearch(1)">search</button>
+                            </td>
+                            <td class="showClass">
+                                <input type="text" name="注文日" id="ordDate_1" style="width: 50px;">
+                            </td>
+                    </tr>
+                </table>
+                </td>
+        </tr>
+        <tr id="message">
+            <td><span id="errMsg"></span></td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    <input type="button" value="1行挿入" onclick="addRow('myTBL')" class="btn" />
+                    <input type="button" value="1行削除" onclick="delRow('myTBL')" class="btn" />
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <p>
+                    <input type="button" value="出力" id="output" class="btn" />
+                    <!--クリックしたときにtext()を実行-->
+                    <input type="button" value="ダウンロード" id="doDownload" class="btn" disabled="disabled" />
+                    <!--クリックしたときにtext()を実行-->
+                </p>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <textarea rows="15" cols="200" id="File" style="overflow: scroll;resize: none;">
+                    (郵便局)ステータスデータファイル作成
+                </textarea>
+            </td>
+        </tr>
+        <!--
+        <tr>
+            <td><b>BEAMパス： </b>$BOOKS_HOME/nfs/data/nippan/import/bundle_shipping_trac_rec/</td>
+        </tr>
+    -->
+        <tr>
+            <td>
+                <p><b>BaRaQuDaパス： </b>/usr/local/books_beam/nfs/
+                    <font color="#ff0000">IT4</font>/data/postoffice/import/</p>
+            </td>
+        </tr>
+        <tr>
+            <td><b>ファイル名:<b>
+                <span id="fileName"></span>
+            </td>
+        </tr>
+        <!-- <tr>
+            <td>コピーコマンド:
+                <div id="command">
+            </td>
+        </tr> -->
+    </table>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>文字をUTF8からSJISに変換</title>
+<script src="../../js/encoding.min.js"></script>
+<script>
+window.onload = function(){
+  document.getElementById('download').addEventListener('click', function (e){
+	var inputText = document.getElementById('textArea').value;
+	var codes = Encoding.stringToCode(inputText);
+    var sjisArray = Encoding.convert(codes, {to: 'SJIS'});
+
+    var blob  = new Blob([new Uint8Array(sjisArray)], {type: 'text/csv;charset=Shift-JIS;'});
+
+    if (window.navigator.msSaveBlob) {
+      e.preventDefault();
+      window.navigator.msSaveBlob(blob, this.getAttribute('download'));
+    }
+    else {
+      this.href = URL.createObjectURL(blob);
+    }
+  });
+}
+
+</script>
+</head>
+<body>
+<label>出力内容</label><br>
+<textarea id="textArea" cols="50" rows="20"></textarea>
+<br>
+<a href="#" id="download" download="test.dat">datダウンロード</a>
+</body>
+</html>

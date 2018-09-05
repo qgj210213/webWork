@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>date format</title>
+    <script src="../../jquery/jquery-3.3.1.js"></script>
+    <script src="../../jquery/jquery-3.3.1.min.js"></script>
+    <script src="../../js/laydate/laydate.js"></script>
+    <script src="../../js/dateformat.js"></script>
+    <link rel="stylesheet" href="">
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td>パターン:</td>
+            <td>
+                <input type="date" name="" value="" placeholder="yyyy-mm-dd" id="dateFormatType">chang to yyyymmdd
+            </td>
+            <td>
+                <input type="time" name="" value="" placeholder="yyyy-mm-dd" id="timeFormatType">chang to hhmmss
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="" id="formatBtn">フォーマット</button>
+            </td>
+        </tr>
+        <tr>
+            <td>文字列:</td>
+            <td>
+                <input type="text" name="" value="" placeholder="" id="dateText">
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>
+                <button type="">パース</button>
+            </td>
+        </tr>
+        <tr>
+            <td>Date#toString():</td>
+            <td>
+                <input type="text" name="" value="" placeholder="">
+            </td>
+        </tr>
+    </table>
+    <script>
+    $("#formatBtn").click(function() {
+        // date change  yyyymmdd
+        var formatType = "yyyyMMdd";
+        var typeVal = $("#dateFormatType").val();
+        var dateFormat = new DateFormat(formatType);
+        var str = dateFormat.format(new Date(typeVal)); // Date(現在時刻)をStringに変換
+        // time change hhmmss
+        var dateTime = new Date();
+        var s = dateTime.getSeconds();
+        var s1 = $("#timeFormatType").val().replace(":","");
+        var ss = ('0' + s).slice(-2);
+        var times = s1 + ss;
+
+        
+        $("#dateText").val(str+"  "+times);
+
+    })
+
+
+
+    // alert(str); // "2007/05/10 12:15:21 312"のように表示される
+    // var date = dateFormat.parse("2005/03/02 12:23:45 021"); // StringをDateに変換
+    </script>
+</body>
+
+</html>

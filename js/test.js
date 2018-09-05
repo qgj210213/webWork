@@ -32,6 +32,11 @@ function getDate(){
   console.log(d.getFullYear()+""+d.getMonth()+""+d.getDate()+""+d.getHours()+""+d.getMinutes()+""+d.getSeconds()+""+d.getMilliseconds());
   console.log(d.getUTCMonth());
 }
+function editeDate () {
+  var date1 = "20181203";
+  var date2 = "20181204";
+  console.log(parseInt(date1) > parseInt(date2));
+}
 // test001();
 // console.log(paddingright("楽天市場"," ",80));
 //戻り　1000000000
@@ -39,4 +44,6 @@ function getDate(){
 // テスト文字列空
 // console.log(isNotEmpty(null) ? "yes" : "not");
 
-getDate();
+// getDate();
+// 
+editeDate ();
