@@ -1,0 +1,11 @@
+SpringBoot Maven 把项目打成 jar 包，上传到centos中，一般可以使用 java -jar xx.jar 这样启动，但是关闭ssh窗口就不能访问了，需要后台启动，关闭ssh连接也能继续访问 
+1.启动 nohup java -jar /home/www/spring_zy_ai.jar –server.port=8011 & 
+2.关闭 
+PID=(ps−ef|grepspringzyai.jar|grep−vgrep|awk′print$2′)if[−z“PID” ] 
+then 
+echo Application is already stopped 
+else 
+echo kill PIDkillPID 
+fi
+
+可以把1和2的命令制作成 .sh 的文件，直接用 sh xx.sh启动、关闭
